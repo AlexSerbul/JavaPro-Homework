@@ -10,6 +10,7 @@ public class HomeWorkApp {
         isIntPositive(-6);
         System.out.println(isIntNegative(0));
         printStringNTimes("Lorem ipsum",4);
+        System.out.println(isYearLeap(2400));
     }
     private static void printThreeWords(){
         System.out.println("Orange \nBanana \nApple");
@@ -59,5 +60,10 @@ public class HomeWorkApp {
         for (int i=0;i<n;i++){
             System.out.println(string);
         }
+    }
+    private static boolean isYearLeap(int year){
+        boolean result = false;
+        if(year%4==0 && (year%100!=0 || year%400==0)) result = true;
+        return result;
     }
 }
