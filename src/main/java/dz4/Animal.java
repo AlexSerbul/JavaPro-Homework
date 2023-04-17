@@ -1,4 +1,4 @@
-package org.example;
+package dz4;
 
 public class Animal {
     private String name;
