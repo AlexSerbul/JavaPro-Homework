@@ -10,7 +10,7 @@ public class ArrayValueCalculator {
         };
 
         try {
-            doCalc(strings);
+            System.out.println(doCalc(strings));
         } catch (ArrayDataException e) {
             System.out.println("ArrayDataException");
         } catch (ArraySizeException e) {
