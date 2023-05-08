@@ -1,0 +1,4 @@
+LEVEL: DEBUG
+PATH: ./Logs/Loaded/log.txt
+FORMAT: [TIME] \ [LEVEL] \ Повідомлення - [MESSAGE]
+MAX_SIZE: 1000
