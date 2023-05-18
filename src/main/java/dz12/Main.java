@@ -5,8 +5,16 @@ import dz12.phonebook.PhoneDictionary;
 
 import java.util.*;
 
-public class Main {
+public class Main<T> {
     public static void main(String[] args) {
+
+        List<String> stringList = new ArrayList<>();
+        stringList.add("Alex");
+        stringList.add("Max");
+        stringList.add("Tom");
+        stringList.add("Tom");
+        stringList.add("Max");
+        findOccurance(stringList);
 
         PhoneDictionary dictionary = new PhoneDictionary();
 
@@ -21,6 +29,9 @@ public class Main {
             System.out.println(e.getPhoneNumber());
         }
 
+    }
+    public List<T> toList(T[] items) {
+        return Arrays.stream(items).toList();
     }
 
     public static int countOccurance(List<String> stringList, String string){
@@ -46,24 +57,6 @@ public class Main {
     }
 
     public static void calcOccurance(List<String> stringList){
-        for(Map.Entry entry : createMap(stringList).entrySet()){
-            System.out.println(entry.getKey() + " : " + entry.getValue());
-        }
-    }
-
-    public static Map<String,Integer> findOccurance(List<String> stringList){
-        Map<String,Integer> map = createMap(stringList);
-
-        System.out.println("[");
-        for(Map.Entry entry : map.entrySet()){
-            System.out.println("    {name: " + entry.getKey() + " ,occurrence: " + entry.getValue() +" }");
-        }
-        System.out.println("]");
-
-        return map;
-    }
-
-    private static Map<String,Integer> createMap(List<String> stringList) {
         Map<String, Integer> map = new HashMap<>();
 
         for(String s : stringList){
@@ -75,6 +68,49 @@ public class Main {
             map.put(s,i);
         }
 
-        return map;
+        for(Map.Entry entry : map.entrySet()){
+            System.out.println(entry.getKey() + " : " + entry.getValue());
+        }
     }
+
+    public static void findOccurance(List<String> stringList){
+        class Entry{
+            String name;
+            int occurence;
+
+            public Entry(String name) {
+                this.name = name;
+                occurence = 1;
+            }
+
+            @Override
+            public String toString() {
+                String string = "{name: "+name+",occurence: "+occurence+" }";
+                return string;
+            }
+        }
+
+        List<Entry> entries = new ArrayList<>();
+
+        for(String name : stringList){
+            boolean isFound = false;
+            for(Entry entry : entries){
+                if(name.equals(entry.name)){
+                    entry.occurence++;
+                    isFound = true;
+                    break;
+                }
+            }
+            if(!isFound){
+                entries.add(new Entry(name));
+            }
+        }
+
+        System.out.println("[");
+        for(Entry entry : entries){
+            System.out.println(entry.toString());
+        }
+        System.out.println("]");
+    }
+
 }
